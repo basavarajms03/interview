@@ -1,0 +1,50 @@
+
+<div class="container mt-5" *ngIf="!register">
+  <h3 class="text-center">Login</h3>
+  <div class="login-form d-flex justify-content-center">
+    <form class="col-md-4" [formGroup]="loginForm" (ngSubmit)="login()">
+      <p class="alert {{successMsg.class}}" *ngIf="successMsg.message">{{successMsg.message}}</p>
+      <div class="form-group mb-3">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" class="form-control" id="username" aria-describedby="textHelp"
+          placeholder="Enter Username">
+      </div>
+      <div class="form-group mb-3">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary">LogIn</button>
+    </form>
+  </div>
+  <p class="text-center mt-4">Don't have an account? <span class="pointer text-primary" (click)="registerLink()">Click
+      Here</span></p>
+</div>
+
+
+<div class="container mt-5" *ngIf="register">
+  <h3 class="text-center">Register</h3>
+  <div class="login-form d-flex justify-content-center">
+    <form class="col-md-4" [formGroup]="registerForm" (ngSubmit)="registerUser()" autocomplete="off">
+      <p class="alert {{successMsg.class}}" *ngIf="successMsg.message">{{successMsg.message}}</p>
+      <div class="form-group mb-3">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" formControlName="username" id="username" aria-describedby="textHelp"
+          placeholder="Choose Username">
+        <small *ngIf="registerForm.controls['username'].touched && registerForm.controls['username'].hasError('required')" class="form-text text-danger">Please choose username you want to use for login.</small>
+      </div>
+      <div class="form-group mb-3">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password">
+        <small *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].hasError('required')" class="form-text text-danger">Please choose password you want to use for login.</small>
+      </div>
+      <div class="form-group mb-3">
+        <label for="ConfirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" formControlName="confPassword" id="ConfirmPassword" placeholder="Confirm Password">
+        <small *ngIf="registerForm.controls['confPassword'].touched && registerForm.controls['confPassword'].hasError('required')" class="form-text text-danger">Confirm your password.</small>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+    </form>
+  </div>
+  <p class="text-center mt-4">You have an account? <span class="pointer text-primary" (click)="loginLink()">Click
+      Here</span></p>
+</div>

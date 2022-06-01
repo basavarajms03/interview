@@ -1,0 +1,14 @@
+<div class="mt-3">
+  <h1 class="text-center">Completed Task Lists</h1>
+  <h3 class="text-danger text-center" *ngIf="completedtaskList.length === 0">No completed tasks found</h3>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let tasks of completedtaskList">
+      <div class="row">
+        <div class="col-md-8">{{tasks.task}}</div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-sm btn-danger" (click)="markAsPending(tasks.id)">Mark as pending</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
